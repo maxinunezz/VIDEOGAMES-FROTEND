@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  filterVideogames,
   getGenres,
   getMyVideogames,
   getVideogames,
@@ -16,8 +17,9 @@ const FilterColumn = () => {
   const genres = useSelector((state) => state.genres);
   const myVideogames = useSelector((state) => state.myVideogames);
   const handleClick = (genre) => {
-    dispatch(getVideogames({ genres: genre.toLowerCase() }));
-    dispatch(getMyVideogames(genre.toLowerCase()));
+    const lowercaseGenre = genre.toLowerCase();
+    dispatch(getVideogames({ genres: lowercaseGenre }));
+    dispatch(filterVideogames(genre));
   };
 
   const handleOrder = (order) => {
@@ -28,6 +30,7 @@ const FilterColumn = () => {
   };
   const restartFilters = () => {
     dispatch(getVideogames({}));
+    dispatch(getMyVideogames());
   };
 
   useEffect(() => {

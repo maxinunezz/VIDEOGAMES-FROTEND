@@ -3,7 +3,6 @@ const initialState = {
   genres: [],
   myVideogames: [],
   platforms: [],
-  games: [],
 };
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -62,22 +61,19 @@ const reducer = (state = initialState, { type, payload }) => {
             : myVideogamesCopy.sort((a, b) => b.rating - a.rating),
       };
     case "FILTER":
-      const allVideogamesFiltered = state.videogames.filter(
-        (videogame) => videogame.genre.toLowerCase() === payload
-      );
-      const allMyVideogamesFiltered = state.myVideogames.filter(
-        (myVideogame) => myVideogame.genre.toLowerCase() === payload
-      );
+      let videogamesFiltered = [];
+      for (const videogame of state.myVideogames) {
+        videogame.genres.map((genre) => {
+          if (genre.name === payload) {
+            videogamesFiltered.push(videogame);
+          }
+        });
+      }
+
       return {
         ...state,
-        videogames:
-          payload === "videogames"
-            ? [...state.videogames]
-            : allVideogamesFiltered,
-        myVideogames:
-          payload === "videogames"
-            ? [...state.myVideogames]
-            : allMyVideogamesFiltered,
+
+        myVideogames: videogamesFiltered,
       };
     case "GET_GENRES":
       return {

@@ -38,10 +38,8 @@ export const getGenres = () => {
   };
 };
 
-export const getMyVideogames = (genres) => {
-  const endpoint = `http://localhost:3001/myvideogames?genres=${
-    genres ?? ""
-  }&name=${name ?? ""}`;
+export const getMyVideogames = () => {
+  const endpoint = `http://localhost:3001/myvideogames`;
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
@@ -91,5 +89,6 @@ export const orderbyrating = (order) => {
 };
 
 export const filterVideogames = (genre) => {
-  return { type: FILTER, payload: genre.toLowerCase() };
+  console.log(genre);
+  return { type: FILTER, payload: genre };
 };

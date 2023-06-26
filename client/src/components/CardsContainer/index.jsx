@@ -8,7 +8,7 @@ import {
   P,
   Card,
 } from "./styled";
-import axios from "axios";
+
 import CardVideogame from "../CardVideogame";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
