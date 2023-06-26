@@ -96,9 +96,19 @@ const Form = () => {
       .post("http://localhost:3001/myvideogames", form)
       .then((res) => {
         console.log(res);
-        alert("Form sent seccessfully");
+        alert("Form sent successfully");
+        setForm({
+          name: "",
+          description: "",
+          platforms: [],
+          image: "",
+          releaseDate: "",
+          rating: "",
+          genre: [],
+        });
+        setErrors({});
       })
-      .catch((err) => alert("form failed: " + err));
+      .catch((err) => alert("Form failed: " + err));
   };
 
   return (
