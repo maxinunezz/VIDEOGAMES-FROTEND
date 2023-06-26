@@ -6,6 +6,7 @@ import {
   ADD_VIDEOGAME,
   ORDERBYRATING,
   GET_PLATFORMS,
+  GET_MYVIDEOGAMES,
 } from "./actionTypes";
 import axios from "axios";
 
@@ -31,6 +32,21 @@ export const getGenres = () => {
       const { data } = await axios.get(endpoint);
 
       dispatch({ type: GET_GENRES, payload: data });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
+export const getMyVideogames = (genres) => {
+  const endpoint = `http://localhost:3001/myvideogames?genres=${
+    genres ?? ""
+  }&name=${name ?? ""}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(endpoint);
+      console.log(data);
+      dispatch({ type: GET_MYVIDEOGAMES, payload: data });
     } catch (error) {
       console.log(error.message);
     }
@@ -75,5 +91,5 @@ export const orderbyrating = (order) => {
 };
 
 export const filterVideogames = (genre) => {
-  return { type: FILTER, payload: genre };
+  return { type: FILTER, payload: genre.toLowerCase() };
 };

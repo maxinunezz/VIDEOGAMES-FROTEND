@@ -11,33 +11,24 @@ import {
 import axios from "axios";
 import CardVideogame from "../CardVideogame";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getVideogames } from "../../Redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getMyVideogames, getVideogames } from "../../Redux/actions";
 import { ButtonA } from "../NavBar/button";
 
 const CardsContainer = ({ cards }) => {
   const [page, setPage] = useState(1);
   const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const [myGames, setMyGames] = useState([]);
 
-  const fetchVideogames = () => {
-    axios
-      .get("http://localhost:3001/myvideogames")
-      .then((res) => {
-        setMyGames(res.data.filter((game) => game.id));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const myGames = useSelector((state) => state.myVideogames);
 
   useEffect(() => {
     dispatch(getVideogames({ page, search: name }));
   }, [page, name]);
+
   useEffect(() => {
-    fetchVideogames();
-  }, [page, name]);
+    dispatch(getMyVideogames());
+  }, [page]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -62,25 +53,27 @@ const CardsContainer = ({ cards }) => {
   return (
     <Root>
       <GameGrid>
-        {myGames.map((game) => (
-          <Card key={game.id}>
-            <Image src={game.image} alt="" />
-            <Title>{game.name}</Title>
+        {page === 1 &&
+          myGames &&
+          myGames.map((game) => (
+            <Card key={game.id}>
+              <Image src={game.image} alt="" />
+              <Title>{game.name}</Title>
 
-            <GenreContainer>
-              <ul>
-                <li>Description: {game.description}</li>
-                <li>Platform: {game.platforms}</li>
-                <li>Rating: {game.rating}</li>
-                <li>Relase Date: {game.releaseDate}</li>
-                <li>Genre:</li>
-                {game.genres.map((genre, index) => (
-                  <P key={`${genre.name}-${index}`}> {genre.name}</P>
-                ))}
-              </ul>
-            </GenreContainer>
-          </Card>
-        ))}
+              <GenreContainer>
+                <ul>
+                  <li>Description: {game.description}</li>
+                  <li>Platform: {game.platforms}</li>
+                  <li>Rating: {game.rating}</li>
+                  <li>Relase Date: {game.releaseDate}</li>
+                  <li>Genre:</li>
+                  {game.genres.map((genre, index) => (
+                    <P key={`${genre.name}-${index}`}> {genre.name}</P>
+                  ))}
+                </ul>
+              </GenreContainer>
+            </Card>
+          ))}
 
         {cards.map((card) => (
           <CardVideogame key={card.id} data={card} />

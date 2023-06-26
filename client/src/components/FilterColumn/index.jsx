@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getGenres,
+  getMyVideogames,
   getVideogames,
   orderVideogames,
   orderbyrating,
@@ -16,7 +17,7 @@ const FilterColumn = () => {
   const myVideogames = useSelector((state) => state.myVideogames);
   const handleClick = (genre) => {
     dispatch(getVideogames({ genres: genre.toLowerCase() }));
-    dispatch(filterVideogames(genre.toLowerCase()));
+    dispatch(getMyVideogames(genre.toLowerCase()));
   };
 
   const handleOrder = (order) => {

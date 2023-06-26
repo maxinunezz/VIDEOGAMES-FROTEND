@@ -6,3 +6,4 @@ export const ADD_VIDEOGAME = "ADD_VIDEOGAMES";
 export const ORDER = "ORDER";
 export const ORDERBYRATING = "ORDERBYRATING";
 export const FILTER = "FILTER";
+export const GET_MYVIDEOGAMES = "GET_MYVIDEOGAMES";

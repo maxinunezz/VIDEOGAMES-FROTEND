@@ -3,6 +3,7 @@ const initialState = {
   genres: [],
   myVideogames: [],
   platforms: [],
+  games: [],
 };
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -16,8 +17,14 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         videogames: payload,
+      };
+    case "GET_MYVIDEOGAMES":
+      return {
+        ...state,
+
         myVideogames: payload,
       };
+
     case "GET_VIDEOGAME":
       return {
         ...state,
@@ -42,7 +49,7 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     case "ORDERBYRATING":
       const videogamesCopy = [...state.videogames];
-      const myVideogamesCopy = [...state.videogames];
+      const myVideogamesCopy = [...state.myVideogames];
       return {
         ...state,
         videogames:
@@ -51,15 +58,15 @@ const reducer = (state = initialState, { type, payload }) => {
             : videogamesCopy.sort((a, b) => b.rating_top - a.rating_top),
         myVideogames:
           payload === 1
-            ? myVideogamesCopy.sort((a, b) => a.rating_top - b.rating_top)
-            : myVideogamesCopy.sort((a, b) => b.rating_top - a.rating_top),
+            ? myVideogamesCopy.sort((a, b) => a.rating - b.rating)
+            : myVideogamesCopy.sort((a, b) => b.rating - a.rating),
       };
     case "FILTER":
       const allVideogamesFiltered = state.videogames.filter(
-        (videogame) => videogame.genre === payload
+        (videogame) => videogame.genre.toLowerCase() === payload
       );
       const allMyVideogamesFiltered = state.myVideogames.filter(
-        (videogame) => videogame.genre === payload
+        (myVideogame) => myVideogame.genre.toLowerCase() === payload
       );
       return {
         ...state,
