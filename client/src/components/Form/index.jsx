@@ -15,8 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getGenres, getPlatforms } from "../../Redux/actions";
 import validate from "../Validation/Validation";
 
-const plataformas = ["Playstation 5", "Playstation 4", "Xbox ONE"];
-
 const Form = () => {
   const dispatch = useDispatch();
   useEffect(() => {

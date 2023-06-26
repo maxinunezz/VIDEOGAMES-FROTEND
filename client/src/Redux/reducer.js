@@ -20,7 +20,6 @@ const reducer = (state = initialState, { type, payload }) => {
     case "GET_MYVIDEOGAMES":
       return {
         ...state,
-
         myVideogames: payload,
       };
 
@@ -60,6 +59,7 @@ const reducer = (state = initialState, { type, payload }) => {
             ? myVideogamesCopy.sort((a, b) => a.rating - b.rating)
             : myVideogamesCopy.sort((a, b) => b.rating - a.rating),
       };
+
     case "FILTER":
       let videogamesFiltered = [];
       for (const videogame of state.myVideogames) {
@@ -69,12 +69,11 @@ const reducer = (state = initialState, { type, payload }) => {
           }
         });
       }
-
       return {
         ...state,
-
         myVideogames: videogamesFiltered,
       };
+
     case "GET_GENRES":
       return {
         ...state,

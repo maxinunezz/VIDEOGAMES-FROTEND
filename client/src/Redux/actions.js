@@ -30,7 +30,6 @@ export const getGenres = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
-
       dispatch({ type: GET_GENRES, payload: data });
     } catch (error) {
       console.log(error.message);
@@ -43,7 +42,6 @@ export const getMyVideogames = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
-      console.log(data);
       dispatch({ type: GET_MYVIDEOGAMES, payload: data });
     } catch (error) {
       console.log(error.message);
@@ -56,7 +54,6 @@ export const getPlatforms = () => {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);
-
       dispatch({ type: GET_PLATFORMS, payload: data });
     } catch (error) {
       console.log(error.message);
@@ -89,6 +86,5 @@ export const orderbyrating = (order) => {
 };
 
 export const filterVideogames = (genre) => {
-  console.log(genre);
   return { type: FILTER, payload: genre };
 };

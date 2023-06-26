@@ -15,7 +15,7 @@ const FilterColumn = () => {
   const dispatch = useDispatch();
 
   const genres = useSelector((state) => state.genres);
-  const myVideogames = useSelector((state) => state.myVideogames);
+
   const handleClick = (genre) => {
     const lowercaseGenre = genre.toLowerCase();
     dispatch(getVideogames({ genres: lowercaseGenre }));
