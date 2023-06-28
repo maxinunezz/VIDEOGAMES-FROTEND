@@ -1,3 +1,4 @@
+//useeffect mvideogames, paginado completo
 import {
   Buttons,
   Root,

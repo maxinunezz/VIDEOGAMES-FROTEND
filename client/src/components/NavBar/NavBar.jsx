@@ -1,3 +1,4 @@
+//agregue boton de redes sociales
 import { NavLink } from "react-router-dom";
 import { Root, StyledButton, StyledImg } from "./styled";
 import SearchBar from "../SearchBar/index";

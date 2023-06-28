@@ -12,6 +12,11 @@ const validate = (form) => {
   } else {
     delete errorMessages.description;
   }
+  if (form.rating > 5 || form.rating < 1) {
+    errorMessages.rating = "rating should be a number between 1 and 5";
+  } else {
+    delete errorMessages.rating;
+  }
 
   return errorMessages;
 };

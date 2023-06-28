@@ -1,3 +1,4 @@
+//order by letter, order by rating and filter by genre
 const initialState = {
   videogames: [],
   genres: [],

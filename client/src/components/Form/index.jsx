@@ -1,3 +1,4 @@
+//VALIDACION Y CHECKBOX
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {
@@ -180,12 +181,11 @@ const Form = () => {
           <Label>Rating:</Label>
           <Input
             type="number"
-            min="1"
-            max="5"
             value={form.rating}
             onChange={changeHandler}
             name="rating"
           />
+          {errors.rating && <H3>{errors.rating}</H3>}
 
           <ButtonA onClick={submitHandler}>Submit</ButtonA>
         </Root>
