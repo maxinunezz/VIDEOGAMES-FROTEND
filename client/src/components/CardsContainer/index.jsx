@@ -81,13 +81,13 @@ const CardsContainer = ({ cards }) => {
         ))}
       </GameGrid>
       <Buttons>
-        <ButtonA onClick={handleClick}>Anterior</ButtonA>
+        <ButtonA onClick={handleClick}>Back</ButtonA>
         {pagesArray.map((pageNum) => (
           <ButtonA key={pageNum} onClick={() => setPage(pageNum)}>
             {pageNum}
           </ButtonA>
         ))}
-        <ButtonA onClick={handleClick}>Siguiente</ButtonA>
+        <ButtonA onClick={handleClick}>Next</ButtonA>
       </Buttons>
     </Root>
   );
